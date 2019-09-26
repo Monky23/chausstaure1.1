@@ -17,4 +17,10 @@
 
     $color = 'select * from color;';
     $screenColor = mysqli_query($conn, $color);
+
+    $size = 'select * from size;';
+    $screenSize = mysqli_query($conn, $size);
+
+    $stock = 'select * from stock;';
+    $screenStock = mysqli_query($conn, $stock);
 ?>

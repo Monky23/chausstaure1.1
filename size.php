@@ -16,5 +16,15 @@
     <a href="color.php">Couleurs</a>
     <a href="size.php">Pointures</a>
     <a href="stock.php">Stocks</a>
+    <div>
+    <?php
+        while ($row = mysqli_fetch_row($screenSize)) {
+            for($i = 0; $i < count($row); ++$i){
+                echo($row[$i]." ");
+            }
+            echo("<br>");
+        }
+    ?>
+    </div>
 </body>
 </html>

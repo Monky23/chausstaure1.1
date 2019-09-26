@@ -18,8 +18,11 @@
     <a href="stock.php">Stocks</a>
     <div>
         <?php
-            while ($row = mysqli_fetch_array($screenBrand)) {
-                echo($row[0]." ". $row[1]."<br>");
+            while ($row = mysqli_fetch_row($screenBrand)) {
+                for($i = 0; $i < count($row); ++$i){
+                    echo($row[$i]." ");
+                }
+                echo("<br>");
             }
         ?>
     </div>
