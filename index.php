@@ -1,4 +1,4 @@
-<?php require_once 'bdd.php' ?>
+<?php require_once 'bdd.php';?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

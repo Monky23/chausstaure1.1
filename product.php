@@ -1,4 +1,4 @@
-<?php require_once 'bdd.php' ?>
+<?php require_once 'bdd.php';?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,9 +18,22 @@
     <a href="stock.php">Stocks</a>
     <div>
     <?php
+        $prod = 'select p.id, d.name, b.name, p.name, c.name, p.gender, p.price
+        from product as p ,
+        brand as b,
+        color as c,
+        category as d
+        WHERE
+        p.brand_id = b.id
+        AND 
+        p.color_id = c.id
+        AND
+        p.category_id = d.id ORDER BY p.id DESC;';
+        $screenProduct = mysqli_query($conn, $prod);
+
         while ($row = mysqli_fetch_row($screenProduct)) {
             for($i = 0; $i < count($row); ++$i){
-                echo($row[$i]." ");
+                echo($row[$i]." --- ");
             }
             echo("<br>");
         }

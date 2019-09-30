@@ -1,4 +1,4 @@
-<?php require_once 'bdd.php' ?>
+<?php require_once 'bdd.php';?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,6 +18,16 @@
     <a href="stock.php">Stocks</a>
     <div>
     <?php
+        $stock = 'select stock.stock, product.name, size.name
+        from stock,
+        product,
+        size
+        WHERE
+        stock.product_id = product.id
+        AND
+        stock.size_id = size.id;';
+        $screenStock = mysqli_query($conn, $stock);
+
         while ($row = mysqli_fetch_row($screenStock)) {
             for($i = 0; $i < count($row); ++$i){
                 echo($row[$i]." ");
