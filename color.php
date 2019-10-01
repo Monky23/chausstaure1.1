@@ -51,6 +51,12 @@
 
                 if(isset($_POST["del_off".$colorId])){
                     header("location: del_color.php?id=".$colorId);
+                };
+                if(isset($_POST["modif".$colorId]) AND !empty($_POST['new_name'])){
+                    $colorpost = htmlspecialchars($_POST['new_name']);
+                    $colormodif = "UPDATE color SET name = '$colorpost'
+                    WHERE id = '$colorId'";
+                    mysqli_query($conn, $colormodif);
                 }
         }
     ?>

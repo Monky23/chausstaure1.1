@@ -51,6 +51,12 @@
 
             if(isset($_POST["del_off".$categoryId])){
                 header("location: del_category.php?id=".$categoryId);
+            };
+            if(isset($_POST["modif".$categoryId]) AND !empty($_POST['new_name'])){
+                $categorypost = htmlspecialchars($_POST['new_name']);
+                $categorymodif = "UPDATE category SET name = '$categorypost'
+                WHERE id = '$categoryId'";
+                mysqli_query($conn, $categorymodif);
             }
         }
     ?>

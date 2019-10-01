@@ -51,6 +51,12 @@
 
                 if(isset($_POST["del_off".$brandId])){
                     header("location: del_brand.php?id=".$brandId);
+                };
+                if(isset($_POST["modif".$brandId]) AND !empty($_POST['new_name'])){
+                    $brandpost = htmlspecialchars($_POST['new_name']);
+                    $brandmodif = "UPDATE brand SET name = '$brandpost'
+                    WHERE id = '$brandId'";
+                    mysqli_query($conn, $brandmodif);
                 }
             }
         ?>

@@ -17,6 +17,45 @@
     <a href="size.php">Pointures</a>
     <a href="stock.php">Stocks</a>
     <div>
+    <h2>Ajouter un produit</h2>
+    <form action="" method="post">
+            <input type="text" name="product_name" id="product_name">
+            <select name="category_name" id="category_name">
+            <?php
+                    $categories = 'select * from category ORDER BY id DESC;';
+                    $screenCategory = mysqli_query($conn, $categories);
+                    while ($row = mysqli_fetch_array($screenCategory)) {
+                            echo "<option>".$row[1]."</option>";
+                    }
+            ?>
+            </select>
+            <select name="brand_name" id="brand_name">
+                <?php
+                        $brands = 'select * from brand ORDER BY id DESC;';
+                        $screenBrand = mysqli_query($conn, $brands);
+                        while ($row = mysqli_fetch_array($screenBrand)) {
+                                echo "<option>".$row[1]."</option>";
+                        }
+                ?>
+            </select>
+            <select name="color_name" id="color_name">
+                <?php
+                        $colors = 'select * from color ORDER BY id DESC;';
+                        $screenColor = mysqli_query($conn, $colors);
+                        while ($row = mysqli_fetch_array($screenColor)) {
+                                echo "<option>".$row[1]."</option>";
+                        }
+                ?>
+            </select>
+            <select name="gender_name" id="gender_name">
+                <option value="">F</option>
+                <option value="">H</option>
+                <option value="">M</option>
+            </select>
+            <input type="text" name="price_name" id="price_name">
+            <input type="submit" name="addProduct" id="addProduct">
+        </form>
+    <h2>Listing des produits</h2>
     <?php
         $prod = 'select p.id, d.name, b.name, p.name, c.name, p.gender, p.price
         from product as p ,
@@ -33,7 +72,7 @@
 
         while ($row = mysqli_fetch_row($screenProduct)) {
             for($i = 0; $i < count($row); ++$i){
-                echo($row[$i]." --- ");
+                echo($row[$i]." ");
             }
             echo("<br>");
         }

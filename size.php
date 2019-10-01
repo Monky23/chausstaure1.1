@@ -51,6 +51,12 @@
 
             if(isset($_POST["del_off".$sizeId])){
                 header("location: del_size.php?id=".$sizeId);
+            };
+            if(isset($_POST["modif".$sizeId]) AND !empty($_POST['new_name'])){
+                $sizepost = htmlspecialchars($_POST['new_name']);
+                $sizemodif = "UPDATE size SET name = '$sizepost'
+                WHERE id = '$sizeId'";
+                mysqli_query($conn, $sizemodif);
             }
         }
     ?>
