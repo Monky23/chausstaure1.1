@@ -6,20 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gestions des categories de Produits</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
     <h1>Gestion des catégories</h1>
-    <a href="index.php">Acceuil</a>
-    <a href="product.php">Produits</a>
-    <a href="category.php">Catégories</a>
-    <a href="brand.php">Marques</a>
-    <a href="color.php">Couleurs</a>
-    <a href="size.php">Pointures</a>
-    <a href="stock.php">Stocks</a>
-
+    <nav>
+        <a href="index.php">Acceuil</a>
+        <a href="product.php">Produits</a>
+        <a href="category.php">Catégories</a>
+        <a href="brand.php">Marques</a>
+        <a href="color.php">Couleurs</a>
+        <a href="size.php">Pointures</a>
+        <a href="stock.php">Stocks</a>
+    </nav>
     <h2>Ajouter une catégorie</h2>
     <div>
         <form action="" method="post">
+            <label for="ajout">Veuillez saisir la catégorie à ajouter</label><br>
             <input type="text" name="category_name" id="category_name">
             <input type="submit" name="addCategory" id="addCategory">
         </form>
@@ -38,7 +41,7 @@
     <h2>Listing des catégories de chaussures avec option de modification et suppression</h2>
     <div>
     <?php
-        $cat = 'select * from category;';
+        $cat = 'select * from category ORDER BY id DESC;';
         $screenCategory = mysqli_query($conn, $cat);
 
         while ($row = mysqli_fetch_array($screenCategory)) {

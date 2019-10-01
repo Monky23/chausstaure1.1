@@ -6,20 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gestion des produits</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
     <h1>Gestion des produits</h1>
-    <a href="index.php">Acceuil</a>
-    <a href="product.php">Produits</a>
-    <a href="category.php">Catégories</a>
-    <a href="brand.php">Marques</a>
-    <a href="color.php">Couleurs</a>
-    <a href="size.php">Pointures</a>
-    <a href="stock.php">Stocks</a>
-    <div>
+    <nav>
+        <a href="index.php">Acceuil</a>
+        <a href="product.php">Produits</a>
+        <a href="category.php">Catégories</a>
+        <a href="brand.php">Marques</a>
+        <a href="color.php">Couleurs</a>
+        <a href="size.php">Pointures</a>
+        <a href="stock.php">Stocks</a>
+    </nav>
     <h2>Ajouter un produit</h2>
-    <form action="" method="post">
-            <input type="text" name="product_name" id="product_name">
+    <div>
+        <form action="" method="post">
+            <label for="nom">Nom</label><br>
+            <input type="text" name="product_name" id="product_name"><br>
+            <label for="categorie">Catégorie</label><br>
             <select name="category_name" id="category_name">
             <?php
                     $categories = 'select * from category ORDER BY id DESC;';
@@ -28,7 +33,8 @@
                             echo "<option>".$row[1]."</option>";
                     }
             ?>
-            </select>
+            </select><br>
+            <label for="marque">Marque</label><br>
             <select name="brand_name" id="brand_name">
                 <?php
                         $brands = 'select * from brand ORDER BY id DESC;';
@@ -37,7 +43,8 @@
                                 echo "<option>".$row[1]."</option>";
                         }
                 ?>
-            </select>
+            </select><br>
+            <label for="couleur">Nom du produit</label><br>
             <select name="color_name" id="color_name">
                 <?php
                         $colors = 'select * from color ORDER BY id DESC;';
@@ -46,18 +53,23 @@
                                 echo "<option>".$row[1]."</option>";
                         }
                 ?>
-            </select>
+            </select><br>
+            <label for="genre">Genre</label><br>
             <select name="gender_name" id="gender_name">
                 <option value="">F</option>
                 <option value="">H</option>
                 <option value="">M</option>
-            </select>
-            <input type="text" name="price_name" id="price_name">
+            </select><br>
+            <label for="prix">Prix</label><br>
+            <input type="text" name="price_name" id="price_name"><br>
             <input type="submit" name="addProduct" id="addProduct">
         </form>
+    </div>
     <h2>Listing des produits</h2>
+    <p>Catégories \/\-/\/ Marque \/\-/\/ Désignation du produit \/\-/\/ Couleur \/\-/\/ Genre \/\-/\/ Prix en Euros \/\-/\/ </p>
+    <div>
     <?php
-        $prod = 'select p.id, d.name, b.name, p.name, c.name, p.gender, p.price
+        $prod = 'select d.name, b.name, p.name, c.name, p.gender, p.price
         from product as p ,
         brand as b,
         color as c,
@@ -72,7 +84,7 @@
 
         while ($row = mysqli_fetch_row($screenProduct)) {
             for($i = 0; $i < count($row); ++$i){
-                echo($row[$i]." ");
+                echo($row[$i]." \/\-/\/ ");
             }
             echo("<br>");
         }

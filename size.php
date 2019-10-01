@@ -6,20 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gestion des tailles des articles</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
     <h1>Gestion des tailles</h1>
-    <a href="index.php">Acceuil</a>
-    <a href="product.php">Produits</a>
-    <a href="category.php">Catégories</a>
-    <a href="brand.php">Marques</a>
-    <a href="color.php">Couleurs</a>
-    <a href="size.php">Pointures</a>
-    <a href="stock.php">Stocks</a>
-    
+    <nav>
+        <a href="index.php">Acceuil</a>
+        <a href="product.php">Produits</a>
+        <a href="category.php">Catégories</a>
+        <a href="brand.php">Marques</a>
+        <a href="color.php">Couleurs</a>
+        <a href="size.php">Pointures</a>
+        <a href="stock.php">Stocks</a>
+    </nav>
     <h2>Ajouter une taille</h2>
     <div>
         <form action="" method="post">
+            <label for="ajout">Veuillez saisir la taille à ajouter</label><br>
             <input type="text" name="size_name" id="size_name">
             <input type="submit" name="addSize" id="addSize">
         </form>
@@ -38,7 +41,7 @@
     <h2>Listing des tailles avec option de modification et suppression</h2>
     <div>
     <?php
-        $sizes = 'select * from size ORDER BY id;';
+        $sizes = 'select * from size ORDER BY id DESC;';
         $screenSize = mysqli_query($conn, $sizes);
 
         while ($row = mysqli_fetch_array($screenSize)) {

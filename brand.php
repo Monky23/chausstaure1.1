@@ -6,20 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gestion des marques de produits</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
     <h1>Gestion de marques</h1>
-    <a href="index.php">Acceuil</a>
-    <a href="product.php">Produits</a>
-    <a href="category.php">Catégories</a>
-    <a href="brand.php">Marques</a>
-    <a href="color.php">Couleurs</a>
-    <a href="size.php">Pointures</a>
-    <a href="stock.php">Stocks</a>
-
+    <nav>
+        <a href="index.php">Acceuil</a>
+        <a href="product.php">Produits</a>
+        <a href="category.php">Catégories</a>
+        <a href="brand.php">Marques</a>
+        <a href="color.php">Couleurs</a>
+        <a href="size.php">Pointures</a>
+        <a href="stock.php">Stocks</a>
+    </nav>
     <h2>Ajouter une marque</h2>
     <div>
         <form action="" method="post">
+            <label for="ajout">Veuillez saisir la marque à ajouter</label><br>
             <input type="text" name="brand_name" id="brand_name">
             <input type="submit" name="addBrand" id="addBrand">
         </form>
@@ -38,7 +41,7 @@
     <h2>Listing des marques de chaussures avec option de modification et suppression</h2>
     <div>
         <?php
-            $brands = 'select * from brand;';
+            $brands = 'select * from brand ORDER BY id DESC;';
             $screenBrand = mysqli_query($conn, $brands);
 
             while ($row = mysqli_fetch_row($screenBrand)) {
