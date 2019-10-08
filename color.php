@@ -45,13 +45,15 @@
         $screenColor = mysqli_query($conn, $colors);
 
         while ($row = mysqli_fetch_array($screenColor)) {
-                $colorId= $row[0];   
-                echo("<div id='color'>".$row[1]."<form method='post'>
-                <input type='text' name='new_name' placeholder='renommer'>
-                <input type='submit' name='modif".$colorId."' value='modifier'>
-                <input type='submit' name='del_off".$colorId."' value='supprimer'>
-                </form></div>");
-
+                $colorId= $row[0];?>   
+                <div id='color'><?php echo $row[1]?>
+                    <form method='post'>
+                        <input type='text' name='new_name' placeholder='renommer'>
+                        <input type='submit' name='modif<?php echo $colorId ?>' value='modifier'>
+                        <input type='submit' name='del_off<?php echo $colorId ?>' value='supprimer'>
+                    </form>
+                </div>
+    <?php
                 if(isset($_POST["del_off".$colorId])){
                     header("location: del_color.php?id=".$colorId);
                 };

@@ -45,13 +45,15 @@
             $screenBrand = mysqli_query($conn, $brands);
 
             while ($row = mysqli_fetch_row($screenBrand)) {
-                $brandId= $row[0];   
-                echo("<div id='color'>".$row[1]."<form method='post'>
-                <input type='text' name='new_name' placeholder='renommer'>
-                <input type='submit' name='modif".$brandId."' value='modifier'>
-                <input type='submit' name='del_off".$brandId."' value='supprimer'>
-                </form></div>");
-
+                $brandId= $row[0];?>
+                <div id='color'><?php echo $row[1]?>
+                    <form method='post'>
+                        <input type='text' name='new_name' placeholder='renommer'>
+                        <input type='submit' name='modif<?php echo $brandId ?>' value='modifier'>
+                        <input type='submit' name='del_off<?php echo $brandId ?>' value='supprimer'>
+                    </form>
+                </div>
+        <?php
                 if(isset($_POST["del_off".$brandId])){
                     header("location: del_brand.php?id=".$brandId);
                 };

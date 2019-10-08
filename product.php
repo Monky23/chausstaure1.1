@@ -1,4 +1,5 @@
 <?php require_once 'bdd.php';?>
+<?php require_once 'verif_prod.php';?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -21,9 +22,13 @@
     </nav>
     <h2>Ajouter un produit</h2>
     <div>
+        <p><?php echo $error ?></p>
         <form action="" method="post">
-            <label for="nom">Nom</label><br>
-            <input type="text" name="product_name" id="product_name"><br>
+            <label for="nom">Nom du produit</label><br>
+            <input type="text" name="product_name" id="product_name" value="<?php 
+            if(!empty($_POST['product_name'])){
+                echo $_POST['product_name'];
+            }?>"><br>
             <label for="categorie">Catégorie</label><br>
             <select name="category_name" id="category_name">
             <?php
@@ -44,7 +49,7 @@
                         }
                 ?>
             </select><br>
-            <label for="couleur">Nom du produit</label><br>
+            <label for="couleur">Couleur</label><br>
             <select name="color_name" id="color_name">
                 <?php
                         $colors = 'select * from color ORDER BY id DESC;';
@@ -61,34 +66,51 @@
                 <option value="">M</option>
             </select><br>
             <label for="prix">Prix</label><br>
-            <input type="text" name="price_name" id="price_name"><br>
+            <input type="text" name="price_name" id="price_name" value="<?php 
+            if(!empty($_POST['price_name'])){
+                echo $_POST['price_name'];
+            }?>"><br>
             <input type="submit" name="addProduct" id="addProduct">
         </form>
     </div>
     <h2>Listing des produits</h2>
-    <p>Catégories \/\-/\/ Marque \/\-/\/ Désignation du produit \/\-/\/ Couleur \/\-/\/ Genre \/\-/\/ Prix en Euros \/\-/\/ </p>
     <div>
-    <?php
-        $prod = 'select d.name, b.name, p.name, c.name, p.gender, p.price
-        from product as p ,
-        brand as b,
-        color as c,
-        category as d
-        WHERE
-        p.brand_id = b.id
-        AND 
-        p.color_id = c.id
-        AND
-        p.category_id = d.id ORDER BY p.id DESC;';
-        $screenProduct = mysqli_query($conn, $prod);
+        <table class="table_produit">
+            <thead>
+                <tr>
+                    <td>Catégorie</td>
+                    <td>Marque</td>
+                    <td>Nom</td>
+                    <td>couleur</td>
+                    <td>Genre</td>
+                    <td>Prix</td>
+                </tr>     
+            </thead>
+            <tbody>
+            <?php
+                $prod = 'SELECT d.name, b.name, p.name, c.name, p.gender, p.price
+                from product as p ,
+                brand as b,
+                color as c,
+                category as d
+                WHERE
+                p.brand_id = b.id
+                AND 
+                p.color_id = c.id
+                AND
+                p.category_id = d.id ORDER BY p.id DESC;';
+                $screenProduct = mysqli_query($conn, $prod);
 
-        while ($row = mysqli_fetch_row($screenProduct)) {
-            for($i = 0; $i < count($row); ++$i){
-                echo($row[$i]." \/\-/\/ ");
-            }
-            echo("<br>");
-        }
-    ?>
+                while ($row = mysqli_fetch_row($screenProduct)) {
+                    echo "<tr>";
+                    for($i = 0; $i < count($row); ++$i){
+                        echo("<td>".$row[$i]."</td>");
+                    }
+                    echo "<tr>";
+                }
+            ?>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

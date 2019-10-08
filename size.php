@@ -45,13 +45,15 @@
         $screenSize = mysqli_query($conn, $sizes);
 
         while ($row = mysqli_fetch_array($screenSize)) {
-            $sizeId= $row[0];       
-            echo("<div id='size'>".$row[1]."<form method='post'>
-            <input type='text' name='new_name' placeholder='renommer'>
-            <input type='submit' name='modif".$sizeId."' value='modifier'>
-            <input type='submit' name='del_off".$sizeId."' value='supprimer'>
-            </form></div>");
-
+            $sizeId= $row[0];?>    
+            <div id='size'><?php echo $row[1]?>
+                <form method='post'>
+                    <input type='text' name='new_name' placeholder='renommer'>
+                    <input type='submit' name='modif<?php echo $sizeId ?>' value='modifier'>
+                    <input type='submit' name='del_off<?php echo $sizeId ?>' value='supprimer'>
+                </form>
+            </div>
+    <?php
             if(isset($_POST["del_off".$sizeId])){
                 header("location: del_size.php?id=".$sizeId);
             };

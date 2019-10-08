@@ -45,13 +45,15 @@
         $screenCategory = mysqli_query($conn, $cat);
 
         while ($row = mysqli_fetch_array($screenCategory)) {
-            $categoryId= $row[0];   
-            echo("<div id='category'>".$row[1]."<form method='post'>
-            <input type='text' name='new_name' placeholder='renommer'>
-            <input type='submit' name='modif".$categoryId."' value='modifier'>
-            <input type='submit' name='del_off".$categoryId."' value='supprimer'>
-            </form></div>");
-
+            $categoryId= $row[0];?>
+            <div id='category'><?php echo $row[1]?>
+                <form method='post'>
+                    <input type='text' name='new_name' placeholder='renommer'>
+                    <input type='submit' name='modif<?php echo $categoryId ?>' value='modifier'>
+                    <input type='submit' name='del_off<?php echo $categoryId ?>' value='supprimer'>
+                </form>
+            </div>
+    <?php
             if(isset($_POST["del_off".$categoryId])){
                 header("location: del_category.php?id=".$categoryId);
             };
